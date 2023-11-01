@@ -98,7 +98,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Reset Script",
 	Callback = function()
-      		
+      		loadstring(game:HttpGet("https://github.com/IJustPenguin/Scripts/blob/main/Kitty",true))();
   	end    
 })
 
