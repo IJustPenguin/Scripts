@@ -1,1 +1,107 @@
 
+
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Camera Simp | Kitty", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest",IntroText = "Loading Script..."})
+
+-- vars
+
+getgenv().Noclip = nil
+getgenv().Clip = nil
+getgenv().HalloweenFarm = true
+
+-- functions
+
+function tvcoin()
+
+  spawn(function()
+   while task.wait(1) do
+       if HalloweenFarm == true then
+           for i, v in pairs(workspace.Map.House.TvCoin:GetChildren()) do
+               firetouchinterest(Coin, game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 0)
+           end
+       else
+           game:GetService("Players").LocalPlayer.Character.Head:Destroy()
+           break
+       end
+   end
+end)
+
+end
+
+
+-- works
+
+
+local items = Window:MakeTab({
+	Name = "Items",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+
+
+for _,k in pairs(game:GetService("Workspace").Map:GetChildren()) do
+    if k.Name ~= "Players" and k.Name ~= "Traps" then
+        for _,i in pairs(k.Tools:GetChildren()) do
+          
+items:AddButton({
+	Name = tostring(i),
+	Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = i:FindFirstChild("Handle").CFrame
+  	end    
+})
+OrionLib:MakeNotification({
+	Name = "Items",
+	Content = "Loaded ".. tostring(i),
+	Image = "rbxassetid://4483345998",
+	Time = 3
+})
+          
+		end
+    end
+end
+local Tab = Window:MakeTab({
+	Name = "Other",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab:AddButton({
+	Name = "Remove Traps",
+	Callback = function()
+game.Workspace.Map.Traps:Destroy()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Remove Bot",
+	Callback = function()
+      		game.Workspace.Map.Club.BOT:Destroy()
+                                  game.Workspace.Map.Players.BOT:Destroy()
+  	end    
+})
+
+  Tab:AddToggle({
+	Name = "Auto TVCoin",
+	Default = false,
+	Callback = function(Value)
+		getgenv().HalloweenFarm = Value
+      tvcoin()
+	end    
+})
+
+
+Tab:AddButton({
+	Name = "Reset Script",
+	Callback = function()
+      		
+  	end    
+})
+
+OrionLib:Init()
+
+ 
