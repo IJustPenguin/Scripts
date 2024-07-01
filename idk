@@ -23,8 +23,8 @@ local function verificarCada0_1Segundos()
             
             asegurarVisibilidad(scrollingFrame1)
             
-            if scrollingFrame2.Folder then
-                asegurarVisibilidad(scrollingFrame2)
+            if scrollingFrame2 then
+                asegurarVisibilidad(scrollingFrame2.Folder)
             end
             
             -- Si encontramos GUI, rompemos el bucle while
