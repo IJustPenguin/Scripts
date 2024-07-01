@@ -19,7 +19,7 @@ local function verificarCada0_1Segundos()
             local scrollingFrame1 = guiFolder.Animations.ScrollingFrame
 
             -- Obtener el ScrollingFrame en Animations2.Folder si existe
-            local scrollingFrame2 = guiFolder.Animations2
+            local scrollingFrame2 = guiFolder:FindFirstChild("Animations2")
             
             asegurarVisibilidad(scrollingFrame1)
             
