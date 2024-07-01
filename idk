@@ -1,6 +1,3 @@
-local never = 1
-repeat
-
 -- Obtener el ScrollingFrame original
 local scrollingFrame1 = game.Players.LocalPlayer.PlayerGui.GUI.Animations.ScrollingFrame
 
@@ -30,5 +27,3 @@ end
 
 -- Llamar a la función para iniciar la verificación continua
 verificarCada0_1Segundos()
-
-until never == 0
