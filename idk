@@ -1,3 +1,12 @@
+local never = 1
+repeat
+
+-- Obtener el ScrollingFrame original
+local scrollingFrame1 = game.Players.LocalPlayer.PlayerGui.GUI.Animations.ScrollingFrame
+
+-- Obtener el ScrollingFrame en Animations2.Folder si existe
+local scrollingFrame2 = game.Players.LocalPlayer.PlayerGui.GUI:FindFirstChild("Animations2")
+
 -- Función para hacer visibles todos los TextButton dentro del ScrollingFrame
 local function asegurarVisibilidad(scrollingFrame)
     for _, child in ipairs(scrollingFrame:GetChildren()) do
@@ -11,45 +20,15 @@ end
 -- Función para verificar y asegurar la visibilidad cada 0.1 segundos
 local function verificarCada0_1Segundos()
     while true do
-        -- Verificar si existe game.Players.LocalPlayer.PlayerGui.GUI
-        local guiFolder = game.Players.LocalPlayer.PlayerGui:FindFirstChild("GUI")
-        
-        if guiFolder then
-            -- Obtener el ScrollingFrame original
-            local scrollingFrame1 = guiFolder.Animations.ScrollingFrame
-
-            -- Obtener el ScrollingFrame en Animations2.Folder si existe
-            local scrollingFrame2 = guiFolder:FindFirstChild("Animations2")
-            
-            asegurarVisibilidad(scrollingFrame1)
-            
-            if scrollingFrame2 then
-                asegurarVisibilidad(scrollingFrame2.Folder)
-            end
-            
-            -- Si encontramos GUI, rompemos el bucle while
-            break
+        asegurarVisibilidad(scrollingFrame1)
+        if scrollingFrame2 then
+            asegurarVisibilidad(scrollingFrame2.Folder)
         end
-        
         wait(0.1)  -- Esperar 0.1 segundos antes de volver a verificar
     end
 end
 
--- Iniciar la verificación inicial
+-- Llamar a la función para iniciar la verificación continua
 verificarCada0_1Segundos()
 
--- Resto del código que se ejecutará cuando GUI y Animations estén disponibles
-local guiFolder = game.Players.LocalPlayer.PlayerGui:FindFirstChild("GUI")
-if guiFolder then
-    local animationsFolder = guiFolder:FindFirstChild("Animations")
-    if animationsFolder then
-        -- Aquí puedes agregar más código que deseas que se ejecute cuando GUI y Animations existan
-        print("GUI y Animations encontrados, ejecutando código adicional...")
-    else
-        -- Si Animations no está presente, imprime un mensaje de advertencia
-        warn("Animations no encontrado después de esperar...")
-    end
-else
-    -- Si GUI no está presente, imprime un mensaje de advertencia
-    warn("GUI no encontrado después de esperar...")
-end
+until never == 0
