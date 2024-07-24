@@ -18,6 +18,46 @@ local function createGui()
     frame.BackgroundTransparency = 0.8
     frame.Parent = screenGui
 
+
+
+    local UIS = game:GetService('UserInputService')
+local frame1 = frame
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+ local delta = input.Position - dragStart
+ local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+  startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+ game:GetService('TweenService'):Create(frame1, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame1.InputBegan:Connect(function(input)
+ if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+  dragToggle = true
+  dragStart = input.Position
+  startPos = frame1.Position
+  input.Changed:Connect(function()
+   if input.UserInputState == Enum.UserInputState.End then
+    dragToggle = false
+   end
+  end)
+ end
+end)
+
+UIS.InputChanged:Connect(function(input)
+ if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+  if dragToggle then
+   updateInput(input)
+  end
+ end
+end)
+
+
+
+
     -- Crear UICorner para Frame
     local frameCorner = Instance.new("UICorner")
     frameCorner.CornerRadius = UDim.new(0, 10)
@@ -57,12 +97,3 @@ local function createGui()
         end
     end)
 end
-
--- Crear la GUI cuando el script se ejecuta por primera vez
-createGui()
-
--- Volver a crear la GUI cuando el jugador respawnea
-player.CharacterAdded:Connect(function()
-    wait(1) -- Esperar un momento para asegurarse de que el personaje se haya cargado completamente
-    createGui()
-end)
