@@ -1,0 +1,68 @@
+-- Script dentro de StarterPlayerScripts
+
+local player = game.Players.LocalPlayer
+
+-- Función para crear la GUI
+local function createGui()
+    -- Crear ScreenGui y colocarlo en StarterGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "SpeedChangerGui"
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = player:WaitForChild("PlayerGui")
+
+    -- Crear Frame
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0, 150, 0, 75)
+    frame.Position = UDim2.new(0.5, -75, 0, 10)
+    frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    frame.BackgroundTransparency = 0.8
+    frame.Parent = screenGui
+
+    -- Crear UICorner para Frame
+    local frameCorner = Instance.new("UICorner")
+    frameCorner.CornerRadius = UDim.new(0, 10)
+    frameCorner.Parent = frame
+
+    -- Crear TextBox
+    local textBox = Instance.new("TextBox")
+    textBox.Size = UDim2.new(0, 100, 0, 30)
+    textBox.Position = UDim2.new(0.5, -50, 0.25, -15)
+    textBox.Text = "60"
+    textBox.BackgroundTransparency = 0.8
+    textBox.Parent = frame
+
+    -- Crear UICorner para TextBox
+    local textBoxCorner = Instance.new("UICorner")
+    textBoxCorner.CornerRadius = UDim.new(0, 10)
+    textBoxCorner.Parent = textBox
+
+    -- Crear TextButton
+    local textButton = Instance.new("TextButton")
+    textButton.Size = UDim2.new(0, 100, 0, 30)
+    textButton.Position = UDim2.new(0.5, -50, 0.75, -15)
+    textButton.Text = "Cambiar WalkSpeed"
+    textButton.BackgroundTransparency = 0.8
+    textButton.Parent = frame
+
+    -- Crear UICorner para TextButton
+    local textButtonCorner = Instance.new("UICorner")
+    textButtonCorner.CornerRadius = UDim.new(0, 10)
+    textButtonCorner.Parent = textButton
+
+    -- Cambiar el WalkSpeed del jugador
+    textButton.MouseButton1Click:Connect(function()
+        local walkSpeed = tonumber(textBox.Text)
+        if walkSpeed then
+            player.Character.Humanoid.WalkSpeed = walkSpeed
+        end
+    end)
+end
+
+-- Crear la GUI cuando el script se ejecuta por primera vez
+createGui()
+
+-- Volver a crear la GUI cuando el jugador respawnea
+player.CharacterAdded:Connect(function()
+    wait(1) -- Esperar un momento para asegurarse de que el personaje se haya cargado completamente
+    createGui()
+end)
