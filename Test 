@@ -14,8 +14,7 @@ local function createGui()
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(0, 150, 0, 75)
     frame.Position = UDim2.new(0.5, -75, 0, 10)
-    frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    frame.BackgroundTransparency = 0.8
+    frame.BackgroundColor3 = Color3.fromRGB(81, 82, 82)
     frame.Parent = screenGui
 
 
@@ -67,21 +66,28 @@ end)
     local textBox = Instance.new("TextBox")
     textBox.Size = UDim2.new(0, 100, 0, 30)
     textBox.Position = UDim2.new(0.5, -50, 0.25, -15)
-    textBox.Text = "60"
-    textBox.BackgroundTransparency = 0.8
+    textBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    textBox.TextScaled = true
+    textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+    textBox.Font = "SourceSans"
+    textBox.Text = ""
     textBox.Parent = frame
 
     -- Crear UICorner para TextBox
     local textBoxCorner = Instance.new("UICorner")
-    textBoxCorner.CornerRadius = UDim.new(0, 10)
+    textBoxCorner.CornerRadius = UDim.new(0, 35)
     textBoxCorner.Parent = textBox
 
     -- Crear TextButton
     local textButton = Instance.new("TextButton")
     textButton.Size = UDim2.new(0, 100, 0, 30)
     textButton.Position = UDim2.new(0.5, -50, 0.75, -15)
-    textButton.Text = "Cambiar WalkSpeed"
-    textButton.BackgroundTransparency = 0.8
+    textButton.Text = "Submit"
+    textButton.Font = "GothamBold"
+    textButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textButton.TextScaled = true
+    textButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     textButton.Parent = frame
 
     -- Crear UICorner para TextButton
