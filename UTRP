@@ -1,0 +1,37 @@
+local player = game.Players.LocalPlayer
+
+-- Función para hacer visibles todos los TextButton dentro del ScrollingFrame
+local function asegurarVisibilidad(scrollingFrame)
+    for _, child in ipairs(scrollingFrame:GetChildren()) do
+        if child:IsA("TextButton") then
+            -- Asegurar que el TextButton sea visible
+            child.Visible = true
+        end
+    end
+end
+
+-- Función para verificar y asegurar la visibilidad cada 0.1 segundos
+local function verificarCada0_1Segundos()
+    while true do
+        local playerGui = player:FindFirstChild("PlayerGui")
+        if playerGui then
+            local gui = playerGui:FindFirstChild("GUI")
+            if gui then
+                local scrollingFrame1 = gui:FindFirstChild("Animations") and gui.Animations:FindFirstChild("ScrollingFrame")
+                local scrollingFrame2 = gui:FindFirstChild("Animations2") and gui.Animations2:FindFirstChild("Folder")
+                
+                if scrollingFrame1 then
+                    asegurarVisibilidad(scrollingFrame1)
+                end
+                
+                if scrollingFrame2 then
+                    asegurarVisibilidad(scrollingFrame2)
+                end
+            end
+        end
+        wait(0.1)  -- Esperar 0.1 segundos antes de volver a verificar
+    end
+end
+
+-- Llamar a la función para iniciar la verificación continua
+verificarCada0_1Segundos()
