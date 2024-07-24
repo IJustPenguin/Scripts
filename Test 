@@ -70,7 +70,7 @@ end)
     textBox.TextScaled = true
     textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
     textBox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
-    textBox.Font = "SourceSans"
+    textBox.Font = SourceSans
     textBox.Text = ""
     textBox.Parent = frame
 
@@ -84,7 +84,7 @@ end)
     textButton.Size = UDim2.new(0, 100, 0, 30)
     textButton.Position = UDim2.new(0.5, -50, 0.75, -15)
     textButton.Text = "Submit"
-    textButton.Font = "GothamBold"
+    textButton.Font = GothamBold
     textButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     textButton.TextScaled = true
     textButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
